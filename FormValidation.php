@@ -16,6 +16,11 @@ $WebsiteError ="";
         }
            else{
                $Name = Test_User_Input($_POST['Name']);
+               
+               // cheking the regex for name
+               if(!preg_match('/^[A-Za-z .]/', $Name)){
+                   $NameError = "Only letters and white spaces are allowed.";
+               }
            }
         
         //Email
@@ -25,6 +30,11 @@ $WebsiteError ="";
         }
            else{
                $Email = Test_User_Input($_POST['Email']);
+               
+               //checking regex for email.
+               if(!preg_match('/^[a-zA-Z0-9._-]{3,}@[a-zA-Z._]{3,}[.][a-zA-Z._]{2,}/', $Email)){
+                   $EmailError = "Invalid Email format";
+               }
            }
         
         //Gender
@@ -34,6 +44,7 @@ $WebsiteError ="";
         }
            else{
                $Gender = Test_User_Input($_POST['Gender']);
+               
            }
         
         //Website
@@ -43,6 +54,11 @@ $WebsiteError ="";
         }
            else{
                $Website = Test_User_Input($_POST['Website']);
+               
+               // checking regex ofr website url
+               if(!preg_match("/(https:|http:|ftp:)\/\/+[a-zA-z0-9.\-\/\$\#\~_?=&!]+\.[a-zA-z0-9.\-\/\$\#\~_?=&!:]*/", $Website)){
+                   $WebsiteError="Invalid website format.";
+               }
            }
     }
            
