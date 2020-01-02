@@ -60,6 +60,20 @@ $WebsiteError ="";
                    $WebsiteError="Invalid website format.";
                }
            }
+        
+        
+    
+        if(!empty($_POST["Name"]) &&
+          !empty($_POST['Email']) &&
+          !empty($_POST['Gender']) &&
+          !empty($_POST['Website'])){
+        echo "<h2>Your submit information.</h2>";
+        echo "Name : {$_POST['Name']}<br>";
+        echo "Email : {$_POST['Email']}<br>";
+        echo "Gender : {$_POST['Gender']}<br>";
+        echo "Website : {$_POST['Website']}<br>";
+        echo "Comment : {$_POST['Comment']}<br>"; }
+        
     }
            
     // Checks the user input for name, email, gender, website.
@@ -100,7 +114,7 @@ $WebsiteError ="";
             Website :<br>
                 <input type="text" name="Website" value="">* <?php echo $WebsiteError ?><br>
             Comment:<br>
-                <textarea name="comment" rows="5" cols="25"></textarea>
+                <textarea name="Comment" rows="5" cols="25"></textarea>
                 <br>
                 <br>
             <button type="submit" name="Submit">Submit your information</button>
