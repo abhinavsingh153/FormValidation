@@ -67,13 +67,23 @@ $WebsiteError ="";
           !empty($_POST['Email']) &&
           !empty($_POST['Gender']) &&
           !empty($_POST['Website'])){
+            
+        if((preg_match('/^[A-Za-z .]/', $Name)== true) && (preg_match('/^[a-zA-Z0-9._-]{3,}@[a-zA-Z._]{3,}[.][a-zA-Z._]{2,}/', $Email)== true) &&
+          (preg_match("/(https:|http:|ftp:)\/\/+[a-zA-z0-9.\-\/\$\#\~_?=&!]+\.[a-zA-z0-9.\-\/\$\#\~_?=&!:]*/", $Website)== true)) 
+        {
         echo "<h2>Your submit information.</h2>";
         echo "Name : {$_POST['Name']}<br>";
         echo "Email : {$_POST['Email']}<br>";
         echo "Gender : {$_POST['Gender']}<br>";
         echo "Website : {$_POST['Website']}<br>";
-        echo "Comment : {$_POST['Comment']}<br>"; }
+        echo "Comment : {$_POST['Comment']}<br>"; 
+        }
+            
+            else{
+                echo "Please fill the form again.";
+            }
         
+    }
     }
            
     // Checks the user input for name, email, gender, website.
