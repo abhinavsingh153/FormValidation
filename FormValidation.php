@@ -1,4 +1,3 @@
-
 <?php 
 
 $NameError="";
@@ -18,7 +17,7 @@ $WebsiteError ="";
                $Name = Test_User_Input($_POST['Name']);
                
                // cheking the regex for name
-               if(!preg_match('/^[A-Za-z .]/', $Name)){
+               if(!preg_match('/^[A-Za-z\. ]/', $Name)){
                    $NameError = "Only letters and white spaces are allowed.";
                }
            }
@@ -68,7 +67,7 @@ $WebsiteError ="";
           !empty($_POST['Gender']) &&
           !empty($_POST['Website'])){
             
-        if((preg_match('/^[A-Za-z .]/', $Name)== true) && (preg_match('/^[a-zA-Z0-9._-]{3,}@[a-zA-Z._]{3,}[.][a-zA-Z._]{2,}/', $Email)== true) &&
+        if((preg_match('/^[A-Za-z \.]/', $Name)== true) && (preg_match('/^[a-zA-Z0-9._-]{3,}@[a-zA-Z._]{3,}[.][a-zA-Z._]{2,}/', $Email)== true) &&
           (preg_match("/(https:|http:|ftp:)\/\/+[a-zA-z0-9.\-\/\$\#\~_?=&!]+\.[a-zA-z0-9.\-\/\$\#\~_?=&!:]*/", $Website)== true)) 
         {
         echo "<h2>Your submit information.</h2>";
@@ -80,7 +79,7 @@ $WebsiteError ="";
         }
             
             else{
-                echo "Please fill the form again.";
+                echo '<span class= "Error">Please complete the form and submit again.</span>';
             }
         
     }
@@ -98,38 +97,55 @@ $WebsiteError ="";
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>Form validation Project</title>
-    </head>
-    
-    <body>
-        
-        <?php ?>
-        
-        <h2>Validation with php.</h2>
-        
-        <form action = "FormValidation.php" method="post">
+<head>
+    <title>Form validation Project</title>
+    <style type="text/css">
+        input[type="text"],input[type="email"], textarea{
+            border: 1px solid dashed;
+            background-color: rgb(221, 216,212);
+            width: 600px;
+            padding: .5em;
+            font-size: 1.0em;
+        }
+        .Error{
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <?php ?>
+
+    <h2>Validation with php.</h2>
+
+    <form action="FormValidation.php" method="post">
         <legend>*Please fill out the following details</legend>
-            
-            <fieldset>
+
+        <fieldset>
             Name:<br>
-                <input type ="text" name="Name" value="">*<?php echo $NameError ?><br>
+            <input type="text" name="Name" value="">
+            <span class="Error">*<?php echo $NameError ?></span><br>
             Email:<br>
-                <input type="text" name="Email" value = "">* <?php echo $EmailError ?><br>
+            <input type="text" name="Email" value="">
+            <span class="Error">* <?php echo $EmailError ?></span><br>
             Gender:
-                <label for="male"><input id="male" type="radio" name="Gender" value="male" >Male</label>
-                <label for ="female"><input  id ="female" type="radio" name="Gender" value="female">Female</label>
-                *<?php echo $GenderError ?> 
-                <br>
+            <label for="male"><input id="male" type="radio" name="Gender" value="male">Male</label>
+            <label for="female"><input id="female" type="radio" name="Gender" value="female">Female</label>
+            <span class="Error">*<?php echo $GenderError ?></span>
+            <br>
             Website :<br>
-                <input type="text" name="Website" value="">* <?php echo $WebsiteError ?><br>
+            <input type="text" name="Website" value="">
+            <span class="Error">* <?php echo $WebsiteError ?></span><br>
             Comment:<br>
-                <textarea name="Comment" rows="5" cols="25"></textarea>
-                <br>
-                <br>
+            <textarea name="Comment" rows="5" cols="25"></textarea>
+            <br>
+            <br>
             <button type="submit" name="Submit">Submit your information</button>
-            </fieldset>
-        </form>
-    
-    </body>
+        </fieldset>
+    </form>
+
+</body>
+
 </html>
