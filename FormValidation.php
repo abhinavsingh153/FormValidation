@@ -75,7 +75,22 @@ $WebsiteError ="";
         echo "Email : {$_POST['Email']}<br>";
         echo "Gender : {$_POST['Gender']}<br>";
         echo "Website : {$_POST['Website']}<br>";
-        echo "Comment : {$_POST['Comment']}<br>"; 
+        echo "Comment : {$_POST['Comment']}<br>";
+            
+        //send email
+        $emailTo ="abhinavsingh153@gmail.com";
+        $subject="Testing";
+        $body=" A person name : ".$_POST['Name']."With the Email : ".$_POST['Email'].$_POST['Email']
+            ."have Gender : ".$_POST['Gender']."have Website of : ".$_POST['Website']
+            ."added Comment :  ".$_POST['Comment'];
+        $Sender = "From:abhinavsingh153@gmail.com";
+
+        if(mail($emailTo , $subject, $body, $Sender)){
+         echo "Mail sent successfully";
+        }
+            else{
+                echo "mail no sent";
+            }
         }
             
             else{
@@ -100,17 +115,19 @@ $WebsiteError ="";
 <head>
     <title>Form validation Project</title>
     <style type="text/css">
-        input[type="text"],input[type="email"], textarea{
+        input[type="text"],
+        input[type="email"],
+        textarea {
             border: 1px solid dashed;
-            background-color: rgb(221, 216,212);
+            background-color: rgb(221, 216, 212);
             width: 600px;
             padding: .5em;
             font-size: 1.0em;
         }
-        .Error{
+
+        .Error {
             color: red;
         }
-
     </style>
 </head>
 
